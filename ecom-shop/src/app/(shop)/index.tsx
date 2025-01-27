@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { PRODUCTS } from '../../../assets/products';
-import { ProductListItem } from "../components/product-list-item";
+import { ProductListItem } from "../../components/product-list-item";
+import { ListHeader } from '../../components/list-header';
 
 const index = () => {
   return (
@@ -9,7 +10,7 @@ const index = () => {
         renderItem={({item}) => <ProductListItem product={item} />}
         keyExtractor={item => item.id.toString()}
         numColumns={2}
-        ListHeaderComponent={<Text>Products</Text>}
+        ListHeaderComponent={ListHeader}
         contentContainerStyle={styles.flatListContent}
         columnWrapperStyle={styles.flatListColumn}
         style={{ paddingHorizontal: 10, paddingVertical: 5}}
