@@ -1,6 +1,7 @@
 import { Link } from 'expo-router';
 import { StyleSheet, Text, View, Image, Pressable, TouchableOpacity, FlatList } from 'react-native';
 import { FontAwesome } from "@expo/vector-icons"
+import { CATEGORIES } from '../../assets/categories';
 
 
 export const ListHeader = () => {
@@ -48,20 +49,23 @@ export const ListHeader = () => {
         </View>
         <View style={styles.categoriesContainer}>
           <Text style={styles.sectionTitle}>Categories</Text>
-          <FlatList
-            data={CATEGORIES}
-            renderItem={({ item }) => (
-              <Link asChild href={`/categories/${item.slug}`}>
-                <Pressable style={styles.category}>
-                  <Image
-                    source={{ uri: item.imageUrl }}
-                    style={styles.categoryImage}
-                  />
-                  <Text style={styles.categoryText}>{item.name}</Text>
-                </Pressable>
-              </Link>
-            )} 
-          />
+            <FlatList
+              data={CATEGORIES}
+              renderItem={({ item }) => (
+                <Link asChild href={`/categories/${item.slug}`}>
+                  <Pressable style={styles.category}>
+                    <Image
+                      source={{ uri: item.imageUrl }}
+                      style={styles.categoryImage}
+                    />
+                    <Text style={styles.categoryText}>{item.name}</Text>
+                  </Pressable>
+                </Link>
+              )}
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+              keyExtractor={item=>item.name}
+            />
         </View>
     </View>
   )
