@@ -1,9 +1,9 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, Image, FlatList } from 'react-native'
 import { Redirect, useLocalSearchParams } from 'expo-router'
 import { CATEGORIES } from '../../../assets/categories'
 import { PRODUCTS } from '../../../assets/products'
 import { Stack } from 'expo-router';
+import { ProductListItem } from '../../components/product-list-item'
 
 
 const Category = () => {
@@ -18,6 +18,15 @@ const Category = () => {
     return <View style={styles.container}>
       <Stack.Screen options={{ title: category.name }} />
       <Image source={{ uri: category.imageUrl }} style={styles.categoryImage} />
+      <Text style={styles.categoryName}>{category.name}</Text>
+      <FlatList
+        data={products}
+        keyExtractor={item => item.id.toString()}
+        contentContainerStyle={styles.productsList}
+        numColumns={2}
+        columnWrapperStyle={styles.productRow}
+        renderItem={({ item }) => <ProductListItem product={item}/>}
+      />
     </View>
 }
 
